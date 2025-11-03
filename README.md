@@ -76,7 +76,7 @@ O projeto é baseado em **diagramas UML**, incluindo:
 
 1. Clone este repositório:
    ```bash
-   git clone https://github.com/<usuario>/<nome-do-repositorio>.git
+   git clone https://github.com/Leonardo-369/ADS_PI_Etapa2.git
    ```
 2. Abra o projeto na sua IDE preferida.  
 3. Configure a conexão com o banco de dados no arquivo de configuração.  
