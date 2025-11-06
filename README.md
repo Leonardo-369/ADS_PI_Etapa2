@@ -13,7 +13,7 @@ Curso: Tecnologia em Análise e Desenvolvimento de Sistemas – SENAC (EAD, 2025
 - Roger Alves da Silva  
 - Thamires Anjos Ferreira  
 
-Professor Orientador: **Anderson Clayton Garcia Lopes**
+Professor orientador: **Anderson Clayton Garcia Lopes**
 
 ---
 
@@ -21,7 +21,7 @@ Professor Orientador: **Anderson Clayton Garcia Lopes**
 
 Este repositório contém o **Sistema de Gestão Universitária**, desenvolvido como parte do **Projeto Integrador da disciplina Desenvolvimento de Sistemas Orientado a Objetos**.  
 
-O sistema tem como objetivo **centralizar e gerenciar informações de alunos, professores e fornecedores** de uma instituição de ensino, garantindo integridade, segurança e eficiência nos cadastros.
+O sistema tem como objetivo **centralizar e gerenciar informações de alunos, professores e fornecedores**, garantindo integridade, segurança e eficiência nos cadastros.  
 
 A modelagem do sistema segue os princípios da **engenharia de software orientada a objetos**, com base em autores como Booch, Rumbaugh e Jacobson (2005) e Sommerville (2011).
 
@@ -29,46 +29,79 @@ A modelagem do sistema segue os princípios da **engenharia de software orientad
 
 ## 🧩 Funcionalidades Principais
 
-### 1. Cadastro de Pessoa Física
-- Campos obrigatórios: nome, CPF, data de nascimento, endereço, telefone e e-mail.  
-- Validação automática de CPF, duplicidade e campos obrigatórios.
-
-### 2. Cadastro de Pessoa Jurídica
-- Campos: razão social, CNPJ, endereço, telefone e responsável legal.  
-- Validação de CNPJ e verificação de duplicidade.  
-
-### 3. Cadastro de Aluno
-- Inclui automaticamente o caso de uso **Cadastro de Pessoa Física**.  
-- Campos adicionais: matrícula, curso e turma.  
-- Validação de matrícula e curso ativo.  
-
-### 4. Cadastro de Professor
-- Inclui automaticamente o caso de uso **Cadastro de Pessoa Física**.  
-- Campos adicionais: formação, área de atuação e vínculo com cursos.  
-- Verificação de duplicidade e consistência acadêmica.  
-
-### 5. Cadastro de Fornecedor
-- Inclui automaticamente o caso de uso **Cadastro de Pessoa Jurídica**.  
-- Campos adicionais: área de fornecimento e contatos.  
-- Validação de CNPJ e controle de duplicidade.  
+- **Cadastro de Pessoa Física e Jurídica**
+- **Cadastro de Aluno e Professor**
+- **Vinculação de Orientações Acadêmicas**
+- **Cadastro de Fornecedores e Contratos**
+- **Consultas integradas de alunos, professores e fornecedores**
 
 ---
 
 ## 🧠 Modelagem UML
 
-O projeto é baseado em **diagramas UML**, incluindo:
-
-- **Diagrama de Casos de Uso** – detalha as interações entre os atores (Aluno, Professor, Fornecedor) e o sistema.  
-- **Diagrama de Classes** – descreve a estrutura orientada a objetos, relacionando entidades e seus atributos.  
+O sistema é modelado com **diagramas UML**, incluindo:
+- **Casos de Uso**: Aluno, Professor e Fornecedor interagem com o sistema.  
+- **Classes**: Estrutura orientada a objetos representando entidades e relacionamentos.
 
 ---
 
 ## ⚙️ Tecnologias Recomendadas
 
-- **Linguagem:** Java / C# / Python (conforme orientação do docente)  
-- **IDE:** Visual Studio Code, IntelliJ IDEA ou Visual Studio  
-- **Banco de Dados:** MySQL ou PostgreSQL  
+- **Linguagem:** Java / C# / Python (conforme orientação docente)  
+- **Banco de Dados:** MySQL ou MariaDB  
 - **Ferramenta de Modelagem:** StarUML, Lucidchart ou draw.io  
+- **IDE:** Visual Studio Code, IntelliJ IDEA ou Visual Studio  
+
+---
+
+## 🗄️ Uso do Banco de Dados (Scripts SQL)
+
+O repositório inclui dois scripts SQL fundamentais:
+
+### 1. `create_tables.sql`
+Cria toda a estrutura do banco de dados do sistema:
+
+- **Tabelas principais:**  
+  `Pessoa`, `PessoaFisica`, `PessoaJuridica`, `Aluno`, `Professor`, `Fornecedor`, `Contrato`, `Orientacao`.
+
+- **Relacionamentos:**  
+  Cada tabela utiliza **chaves estrangeiras** para garantir integridade referencial entre pessoas, alunos, professores e fornecedores.
+
+🧱 **Execução:**
+```sql
+SOURCE create_tables.sql;
+```
+
+---
+
+### 2. `queries.sql`
+Contém exemplos práticos de **inserções e consultas SQL** para testar o sistema:
+
+- **Inserção de registros:**  
+  - Pessoa Física (Aluno e Professor)  
+  - Relação de Orientação (Professor ↔ Aluno)
+
+- **Consultas principais:**  
+  - Listar alunos e seus respectivos orientadores  
+  - Listar fornecedores e seus contratos vinculados  
+
+🧩 **Execução:**
+```sql
+SOURCE queries.sql;
+```
+
+---
+
+### 🔍 Exemplo de Consulta Integrada
+```sql
+SELECT a.matricula, pAluno.nome AS aluno, pProf.nome AS professor
+FROM Orientacao o
+JOIN Aluno a ON o.idAluno = a.idPessoa
+JOIN Pessoa pAluno ON pAluno.idPessoa = a.idPessoa
+JOIN Professor pr ON pr.idPessoa = o.idProfessor
+JOIN Pessoa pProf ON pProf.idPessoa = pr.idPessoa;
+```
+> Essa consulta exibe o nome dos alunos e seus orientadores cadastrados no sistema.
 
 ---
 
@@ -78,9 +111,19 @@ O projeto é baseado em **diagramas UML**, incluindo:
    ```bash
    git clone https://github.com/<usuario>/<nome-do-repositorio>.git
    ```
-2. Abra o projeto na sua IDE preferida.  
-3. Configure a conexão com o banco de dados no arquivo de configuração.  
-4. Execute o projeto e acesse os módulos de cadastro disponíveis.  
+2. Crie o banco de dados no MySQL:
+   ```sql
+   CREATE DATABASE gestao_universitaria;
+   USE gestao_universitaria;
+   ```
+3. Execute o script de criação de tabelas:
+   ```sql
+   SOURCE create_tables.sql;
+   ```
+4. Popule o banco e teste as consultas:
+   ```sql
+   SOURCE queries.sql;
+   ```
 
 ---
 
