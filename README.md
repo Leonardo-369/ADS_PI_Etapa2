@@ -109,7 +109,7 @@ JOIN Pessoa pProf ON pProf.idPessoa = pr.idPessoa;
 
 1. Clone este repositório:
    ```bash
-   git clone https://github.com/<usuario>/<nome-do-repositorio>.git
+   git clone https://github.com/Leonardo-369/ADS_PI_Etapa2.git
    ```
 2. Crie o banco de dados no MySQL:
    ```sql
