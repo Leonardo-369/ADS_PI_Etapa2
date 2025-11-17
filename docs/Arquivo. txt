@@ -1,0 +1,1025 @@
+================================================================================
+FLUXOGRAMA INTERATIVO - SISTEMA DE CADASTRO ACADÊMICO
+Código Fonte Completo
+Versão 1.0.0 - Novembro 2025
+================================================================================
+
+ÍNDICE:
+1. App.tsx - Componente Principal
+2. FlowChart.tsx - Componente do Fluxograma
+3. package.json - Configurações do Projeto
+4. Estrutura de Dados
+5. Instruções de Uso
+
+================================================================================
+1. APP.TSX - COMPONENTE PRINCIPAL
+================================================================================
+
+import { FlowChart } from './components/FlowChart';
+import { Workflow } from 'lucide-react';
+
+export default function App() {
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+      {/* Header */}
+      <header className="bg-white border-b border-gray-200 shadow-sm">
+        <div className="container mx-auto px-6 py-6">
+          <div className="flex items-center gap-3">
+            <div className="bg-blue-600 p-2 rounded-lg">
+              <Workflow className="text-white" size={28} />
+            </div>
+            <div>
+              <h1 className="text-gray-900">Fluxograma de Cadastro de Aluno</h1>
+              <p className="text-gray-600 text-sm">Sistema de Gestão Acadêmica</p>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* Main Content */}
+      <main className="container mx-auto px-6 py-12">
+        {/* Introduction */}
+        <div className="bg-white rounded-lg shadow-md p-8 mb-8">
+          <h2 className="text-gray-900 mb-4">Processo de Cadastro no Sistema</h2>
+          <p className="text-gray-600 mb-4">
+            Este fluxograma representa o processo completo de cadastro no sistema 
+            com quatro modalidades: Cadastro de Aluno, Cadastro de Professor 
+            (ambos incluem Pessoa Física via <<include>>), Cadastro de Fornecedor 
+            (inclui Pessoa Jurídica via <<include>>) e Pessoa Jurídica (Empresa). 
+            Após a etapa inicial, o sistema oferece uma bifurcação quádrupla.
+          </p>
+          
+          {/* Resumo dos Fluxos */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-4">
+            {/* Cadastro de Aluno */}
+            <div>
+              <p className="text-gray-700 mb-2">Cadastro de Aluno (6 passos):</p>
+              <div className="space-y-1 text-sm text-gray-600">
+                <div>1. Início</div>
+                <div>2. Módulo Aluno</div>
+                <div>3. PF <<include>></div>
+                <div>4. Dados Acadêmicos</div>
+                <div>5. Validação</div>
+                <div>6. Conclusão</div>
+              </div>
+            </div>
+
+            {/* Cadastro de Professor */}
+            <div>
+              <p className="text-gray-700 mb-2">Cadastro de Professor (6 passos):</p>
+              <div className="space-y-1 text-sm text-gray-600">
+                <div>1. Início</div>
+                <div>2. Módulo Professor</div>
+                <div>3. PF <<include>></div>
+                <div>4. Dados Acadêmicos</div>
+                <div>5. Validação</div>
+                <div>6. Conclusão</div>
+              </div>
+            </div>
+
+            {/* Cadastro de Fornecedor */}
+            <div>
+              <p className="text-gray-700 mb-2">Cadastro de Fornecedor (6 passos):</p>
+              <div className="space-y-1 text-sm text-gray-600">
+                <div>1. Início</div>
+                <div>2. Módulo Fornecedor</div>
+                <div>3. PJ <<include>></div>
+                <div>4. Dados Adicionais</div>
+                <div>5. Validação</div>
+                <div>6. Conclusão</div>
+              </div>
+            </div>
+
+            {/* Pessoa Jurídica */}
+            <div>
+              <p className="text-gray-700 mb-2">Pessoa Jurídica (5 passos):</p>
+              <div className="space-y-1 text-sm text-gray-600">
+                <div>1. Início</div>
+                <div>2. Módulo PJ</div>
+                <div>3. Dados Empresariais</div>
+                <div>4. Validação</div>
+                <div>5. Conclusão</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* FlowChart Component */}
+        <FlowChart />
+
+        {/* Additional Info */}
+        <div className="bg-white rounded-lg shadow-md p-8 mt-8">
+          <h3 className="text-gray-900 mb-4">Informações Importantes</h3>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            
+            {/* Geral */}
+            <div>
+              <h4 className="text-gray-900 mb-3">Geral</h4>
+              <div className="space-y-3 text-gray-600">
+                <p>
+                  <span className="text-gray-900">Validações Automáticas:</span> 
+                  O sistema realiza validações em tempo real.
+                </p>
+                <p>
+                  <span className="text-gray-900">Campos Obrigatórios:</span> 
+                  Devem ser preenchidos corretamente.
+                </p>
+              </div>
+            </div>
+
+            {/* Relações <<include>> */}
+            <div>
+              <h4 className="text-gray-900 mb-3">Relações <<include>></h4>
+              <div className="space-y-3 text-gray-600">
+                <p>
+                  <span className="text-gray-900">Aluno e Professor:</span> 
+                  Incluem automaticamente Cadastro de Pessoa Física.
+                </p>
+                <p>
+                  <span className="text-gray-900">Fornecedor:</span> 
+                  Inclui automaticamente Cadastro de Pessoa Jurídica.
+                </p>
+              </div>
+            </div>
+
+            {/* Pré-condições */}
+            <div>
+              <h4 className="text-gray-900 mb-3">Pré-condições</h4>
+              <div className="space-y-3 text-gray-600">
+                <p><span className="text-gray-900">Aluno:</span> Usuário autenticado.</p>
+                <p><span className="text-gray-900">Professor:</span> Perfil acadêmico.</p>
+                <p><span className="text-gray-900">Fornecedor:</span> Perfil administrativo.</p>
+              </div>
+            </div>
+
+            {/* Pós-condições */}
+            <div>
+              <h4 className="text-gray-900 mb-3">Pós-condições</h4>
+              <div className="space-y-3 text-gray-600">
+                <p><span className="text-gray-900">Aluno:</span> Vinculado a disciplinas.</p>
+                <p><span className="text-gray-900">Professor:</span> Associado a cursos.</p>
+                <p><span className="text-gray-900">Fornecedor:</span> Disponível para contratos.</p>
+                <p><span className="text-gray-900">PJ:</span> Vinculada a projetos.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      {/* Footer */}
+      <footer className="bg-white border-t border-gray-200 mt-12">
+        <div className="container mx-auto px-6 py-6">
+          <p className="text-center text-gray-600 text-sm">
+            Sistema de Gestão Acadêmica © 2025
+          </p>
+        </div>
+      </footer>
+    </div>
+  );
+}
+
+================================================================================
+2. FLOWCHART.TSX - COMPONENTE DO FLUXOGRAMA
+================================================================================
+
+import { useState } from 'react';
+import { 
+  ChevronDown, AlertCircle, CheckCircle, XCircle, User, FileText, 
+  GraduationCap, Check, Building2, GitBranch, Shield, Database, 
+  Link2, BookOpen, Package 
+} from 'lucide-react';
+
+// ============================================================================
+// INTERFACES E TIPOS
+// ============================================================================
+
+interface FlowStep {
+  id: string;
+  stage: string;
+  stepNumber?: string;
+  userActions: string;
+  systemActions: string[];
+  attentionPoints: string;
+  icon: any;
+  color: string;
+  type?: 'aluno' | 'juridica' | 'professor' | 'fornecedor' | 'common';
+  preCondition?: string;
+  postCondition?: string;
+  includeRelation?: string;
+}
+
+// ============================================================================
+// DADOS DOS FLUXOS
+// ============================================================================
+
+// ETAPA COMUM (INÍCIO)
+const commonSteps: FlowStep[] = [
+  {
+    id: 'inicio',
+    stage: 'Início',
+    stepNumber: '1',
+    userActions: 'Solicita a inclusão dos seus dados no sistema.',
+    systemActions: [
+      'Verifica autenticação do usuário.',
+      'Direciona o usuário para escolher o tipo de cadastro.'
+    ],
+    attentionPoints: 'Garantir que o usuário esteja autenticado.',
+    icon: User,
+    color: 'blue',
+    type: 'common',
+    preCondition: 'Usuário deve estar autenticado no sistema.'
+  }
+];
+
+// FLUXO: CADASTRO DE ALUNO
+const alunoSteps: FlowStep[] = [
+  {
+    id: 'aluno-modulo',
+    stage: 'Módulo Cadastro de Aluno',
+    stepNumber: '2',
+    userActions: 'Aluno solicita inclusão de dados no sistema.',
+    systemActions: [
+      'Direciona para o módulo "Cadastro de Aluno".',
+      'Prepara inclusão automática do caso de uso "Cadastro de Pessoa Física".'
+    ],
+    attentionPoints: 'Verificar se o usuário está autorizado no módulo acadêmico.',
+    icon: GraduationCap,
+    color: 'purple',
+    type: 'aluno',
+    preCondition: 'Usuário autenticado e autorizado no módulo acadêmico.',
+    includeRelation: 'Inclui automaticamente: Cadastro de Pessoa Física'
+  },
+  {
+    id: 'aluno-pf-include',
+    stage: 'Cadastro de Pessoa Física <<include>>',
+    stepNumber: '3',
+    userActions: 'Insere nome completo, CPF, data de nascimento, endereço.',
+    systemActions: [
+      'Caso de uso "Cadastro de Pessoa Física" é incluído (<<include>>).',
+      'Valida formato do CPF e checa duplicidade.',
+      'Valida campos obrigatórios.',
+      'Aplica máscara de formatação.'
+    ],
+    attentionPoints: 'CPF já cadastrado ou inválido deve ser rejeitado.',
+    icon: FileText,
+    color: 'purple',
+    type: 'aluno',
+    includeRelation: 'Relação: <<include>> com Cadastro de Pessoa Física'
+  },
+  {
+    id: 'aluno-dados-academicos',
+    stage: 'Dados Acadêmicos',
+    stepNumber: '4',
+    userActions: 'Insere matrícula, curso, turma e informações acadêmicas.',
+    systemActions: [
+      'Recebe os dados acadêmicos do aluno.',
+      'Armazena temporariamente as informações.'
+    ],
+    attentionPoints: 'Matrícula deve ser única no sistema.',
+    icon: GraduationCap,
+    color: 'green',
+    type: 'aluno'
+  },
+  {
+    id: 'aluno-validacao',
+    stage: 'Validação de Dados Acadêmicos',
+    stepNumber: '5',
+    userActions: 'Aguarda validação dos dados inseridos.',
+    systemActions: [
+      'Valida se a matrícula é única.',
+      'Verifica se o curso está ativo e disponível.',
+      'Valida se a turma existe e está vinculada ao curso.',
+      'Confirma campos obrigatórios.'
+    ],
+    attentionPoints: 'Matrícula duplicada ou curso inativo bloqueia o avanço.',
+    icon: CheckCircle,
+    color: 'green',
+    type: 'aluno'
+  },
+  {
+    id: 'aluno-conclusao',
+    stage: 'Conclusão - Cadastro de Aluno',
+    stepNumber: '6',
+    userActions: 'Recebe confirmação e finaliza o processo.',
+    systemActions: [
+      'Sistema valida os dados e grava o registro.',
+      'Grava as informações no banco de dados de alunos.',
+      'Vincula dados pessoais (PF) com dados acadêmicos.',
+      'Exibe mensagem: "Cadastro de Aluno realizado com sucesso".'
+    ],
+    attentionPoints: 'O aluno agora pode ser vinculado a disciplinas e turmas.',
+    icon: Check,
+    color: 'emerald',
+    type: 'aluno',
+    postCondition: 'Aluno registrado e vinculado a disciplinas, notas e históricos.'
+  }
+];
+
+// FLUXO: CADASTRO DE PROFESSOR
+const professorSteps: FlowStep[] = [
+  {
+    id: 'prof-modulo',
+    stage: 'Módulo Cadastro de Professor',
+    stepNumber: '2',
+    userActions: 'Professor solicita inclusão de dados no sistema.',
+    systemActions: [
+      'Direciona para o módulo "Cadastro de Professor".',
+      'Prepara inclusão automática do caso de uso "Cadastro de Pessoa Física".'
+    ],
+    attentionPoints: 'Verificar perfil acadêmico/administrativo.',
+    icon: BookOpen,
+    color: 'indigo',
+    type: 'professor',
+    preCondition: 'Usuário com perfil acadêmico ou administrativo.',
+    includeRelation: 'Prepara relação: <<include>> com Cadastro de Pessoa Física'
+  },
+  {
+    id: 'prof-pf-include',
+    stage: 'Cadastro de Pessoa Física <<include>>',
+    stepNumber: '3',
+    userActions: 'Insere nome completo, CPF, data de nascimento, endereço.',
+    systemActions: [
+      'Caso de uso "Cadastro de Pessoa Física" é incluído (<<include>>).',
+      'Valida formato do CPF e checa duplicidade.',
+      'Valida campos obrigatórios.',
+      'Aplica máscara de formatação.'
+    ],
+    attentionPoints: 'CPF duplicado ou inválido deve ser rejeitado.',
+    icon: FileText,
+    color: 'indigo',
+    type: 'professor',
+    includeRelation: 'Relação: <<include>> com Cadastro de Pessoa Física'
+  },
+  {
+    id: 'prof-dados-academicos',
+    stage: 'Dados Acadêmicos do Professor',
+    stepNumber: '4',
+    userActions: 'Insere formação acadêmica, área de atuação, vínculo com cursos.',
+    systemActions: [
+      'Recebe informações sobre formação acadêmica.',
+      'Armazena área de atuação e especialização.',
+      'Registra vínculos com cursos e disciplinas.',
+      'Prepara para validação final.'
+    ],
+    attentionPoints: 'Formação deve ser reconhecida e válida.',
+    icon: GraduationCap,
+    color: 'indigo',
+    type: 'professor'
+  },
+  {
+    id: 'prof-validacao',
+    stage: 'Validação de Dados',
+    stepNumber: '5',
+    userActions: 'Aguarda validação dos dados inseridos.',
+    systemActions: [
+      'Valida os dados e verifica consistência.',
+      'Verifica se o professor já está cadastrado.',
+      'Valida formação acadêmica e documentação.',
+      'Confirma campos obrigatórios.'
+    ],
+    attentionPoints: 'Professor duplicado ou formação inválida bloqueia o cadastro.',
+    icon: CheckCircle,
+    color: 'indigo',
+    type: 'professor'
+  },
+  {
+    id: 'prof-conclusao',
+    stage: 'Conclusão - Cadastro de Professor',
+    stepNumber: '6',
+    userActions: 'Recebe confirmação e finaliza o processo.',
+    systemActions: [
+      'Sistema valida os dados e grava o registro.',
+      'Grava as informações no banco de dados de professores.',
+      'Vincula dados pessoais (PF) com dados acadêmicos.',
+      'Exibe mensagem: "Cadastro de Professor realizado com sucesso".'
+    ],
+    attentionPoints: 'O professor pode ser associado a cursos e disciplinas.',
+    icon: Check,
+    color: 'emerald',
+    type: 'professor',
+    postCondition: 'Professor incluído na base docente e disponível para vínculos.'
+  }
+];
+
+// FLUXO: CADASTRO DE FORNECEDOR
+const fornecedorSteps: FlowStep[] = [
+  {
+    id: 'forn-modulo',
+    stage: 'Módulo Cadastro de Fornecedor',
+    stepNumber: '2',
+    userActions: 'Fornecedor solicita inclusão de dados no sistema.',
+    systemActions: [
+      'Direciona para o módulo "Cadastro de Fornecedor".',
+      'Prepara inclusão automática de "Cadastro de Pessoa Jurídica".'
+    ],
+    attentionPoints: 'Verificar se o usuário tem perfil administrativo.',
+    icon: Package,
+    color: 'teal',
+    type: 'fornecedor',
+    preCondition: 'Usuário autenticado com perfil administrativo.',
+    includeRelation: 'Prepara relação: <<include>> com Cadastro de Pessoa Jurídica'
+  },
+  {
+    id: 'forn-pj-include',
+    stage: 'Cadastro de Pessoa Jurídica <<include>>',
+    stepNumber: '3',
+    userActions: 'Insere razão social, CNPJ, endereço, telefone, responsável legal.',
+    systemActions: [
+      'Caso de uso "Cadastro de Pessoa Jurídica" é incluído (<<include>>).',
+      'Valida formato do CNPJ e checa duplicidade.',
+      'Valida campos obrigatórios.',
+      'Aplica máscara de formatação (CNPJ, telefone, CEP).'
+    ],
+    attentionPoints: 'CNPJ já cadastrado ou inválido deve ser rejeitado.',
+    icon: Building2,
+    color: 'teal',
+    type: 'fornecedor',
+    includeRelation: 'Relação: <<include>> com Cadastro de Pessoa Jurídica'
+  },
+  {
+    id: 'forn-dados-adicionais',
+    stage: 'Dados Adicionais do Fornecedor',
+    stepNumber: '4',
+    userActions: 'Insere informações sobre área de fornecimento e contatos.',
+    systemActions: [
+      'Recebe as informações complementares do fornecedor.',
+      'Armazena dados sobre área de fornecimento.',
+      'Registra contatos comerciais e técnicos.',
+      'Prepara para validação final.'
+    ],
+    attentionPoints: 'Área de fornecimento é importante para processos de compra.',
+    icon: FileText,
+    color: 'teal',
+    type: 'fornecedor'
+  },
+  {
+    id: 'forn-validacao',
+    stage: 'Validação de Dados',
+    stepNumber: '5',
+    userActions: 'Aguarda validação dos dados inseridos.',
+    systemActions: [
+      'Valida os dados e verifica consistência.',
+      'Verifica se o fornecedor já existe no sistema.',
+      'Confirma que todos os campos obrigatórios foram preenchidos.',
+      'Valida informações de contato e área de fornecimento.'
+    ],
+    attentionPoints: 'Fornecedor existente sugere atualização. CNPJ inválido bloqueia.',
+    icon: CheckCircle,
+    color: 'teal',
+    type: 'fornecedor'
+  },
+  {
+    id: 'forn-conclusao',
+    stage: 'Conclusão - Cadastro de Fornecedor',
+    stepNumber: '6',
+    userActions: 'Recebe confirmação e finaliza o processo.',
+    systemActions: [
+      'Sistema valida os dados e grava o registro.',
+      'Grava as informações no banco de dados de fornecedores.',
+      'Vincula dados empresariais (PJ) com dados específicos do fornecedor.',
+      'Exibe mensagem: "Cadastro de Fornecedor realizado com sucesso".'
+    ],
+    attentionPoints: 'Fornecedor pronto para associação a contratos.',
+    icon: Check,
+    color: 'emerald',
+    type: 'fornecedor',
+    postCondition: 'Fornecedor registrado para contratos e processos de compra.'
+  }
+];
+
+// FLUXO: PESSOA JURÍDICA
+const pessoaJuridicaSteps: FlowStep[] = [
+  {
+    id: 'pj-modulo',
+    stage: 'Módulo Pessoa Jurídica',
+    stepNumber: '2',
+    userActions: 'Solicita cadastro de empresa (Pessoa Jurídica).',
+    systemActions: [
+      'Direciona para o módulo "Cadastro de Pessoa Jurídica".',
+      'Prepara formulário de dados empresariais.'
+    ],
+    attentionPoints: 'Módulo exclusivo para cadastro de empresas.',
+    icon: Building2,
+    color: 'orange',
+    type: 'juridica'
+  },
+  {
+    id: 'pj-dados',
+    stage: 'Dados Empresariais',
+    stepNumber: '3',
+    userActions: 'Insere razão social, CNPJ, endereço, telefone, responsável legal.',
+    systemActions: [
+      'Recebe os dados empresariais.',
+      'Armazena temporariamente para validação.',
+      'Aplica máscara de formatação nos campos.'
+    ],
+    attentionPoints: 'Todos os campos devem ser preenchidos corretamente.',
+    icon: FileText,
+    color: 'orange',
+    type: 'juridica'
+  },
+  {
+    id: 'pj-validacao',
+    stage: 'Validação de Dados',
+    stepNumber: '4',
+    userActions: 'Aguarda validação dos dados inseridos.',
+    systemActions: [
+      'Valida formato do CNPJ.',
+      'Verifica se o CNPJ já está cadastrado.',
+      'Valida campos obrigatórios.',
+      'Confirma consistência dos dados.'
+    ],
+    attentionPoints: 'CNPJ duplicado ou inválido bloqueia o cadastro.',
+    icon: CheckCircle,
+    color: 'orange',
+    type: 'juridica'
+  },
+  {
+    id: 'pj-conclusao',
+    stage: 'Conclusão - Pessoa Jurídica',
+    stepNumber: '5',
+    userActions: 'Recebe confirmação e finaliza o processo.',
+    systemActions: [
+      'Sistema valida os dados e grava o registro.',
+      'Grava as informações no banco de dados.',
+      'Exibe mensagem: "Cadastro de Pessoa Jurídica realizado com sucesso".'
+    ],
+    attentionPoints: 'A empresa pode ser vinculada a contratos e projetos.',
+    icon: Check,
+    color: 'emerald',
+    type: 'juridica',
+    postCondition: 'Empresa vinculada a contratos, projetos e processos.'
+  }
+];
+
+// ============================================================================
+// COMPONENTE PRINCIPAL
+// ============================================================================
+
+export function FlowChart() {
+  const [expandedStep, setExpandedStep] = useState<string | null>(null);
+  const [selectedFlow, setSelectedFlow] = useState<'all' | 'aluno' | 'professor' | 'fornecedor' | 'juridica'>('all');
+
+  const toggleStep = (stepId: string) => {
+    setExpandedStep(expandedStep === stepId ? null : stepId);
+  };
+
+  // Função para obter classes de cor
+  const getColorClasses = (color: string) => {
+    const colors: Record<string, any> = {
+      blue: {
+        bg: 'bg-blue-50',
+        border: 'border-blue-300',
+        text: 'text-blue-900',
+        icon: 'text-blue-600'
+      },
+      purple: {
+        bg: 'bg-purple-50',
+        border: 'border-purple-300',
+        text: 'text-purple-900',
+        icon: 'text-purple-600'
+      },
+      green: {
+        bg: 'bg-green-50',
+        border: 'border-green-300',
+        text: 'text-green-900',
+        icon: 'text-green-600'
+      },
+      orange: {
+        bg: 'bg-orange-50',
+        border: 'border-orange-300',
+        text: 'text-orange-900',
+        icon: 'text-orange-600'
+      },
+      emerald: {
+        bg: 'bg-emerald-50',
+        border: 'border-emerald-300',
+        text: 'text-emerald-900',
+        icon: 'text-emerald-600'
+      },
+      indigo: {
+        bg: 'bg-indigo-50',
+        border: 'border-indigo-300',
+        text: 'text-indigo-900',
+        icon: 'text-indigo-600'
+      },
+      teal: {
+        bg: 'bg-teal-50',
+        border: 'border-teal-300',
+        text: 'text-teal-900',
+        icon: 'text-teal-600'
+      }
+    };
+    return colors[color];
+  };
+
+  // Função para renderizar um step
+  const renderStep = (step: FlowStep) => {
+    const isExpanded = expandedStep === step.id;
+    const colorClasses = getColorClasses(step.color);
+    const Icon = step.icon;
+
+    return (
+      <div
+        key={step.id}
+        className={`border-2 ${colorClasses.border} ${colorClasses.bg} rounded-lg 
+                   shadow-md hover:shadow-lg transition-all cursor-pointer`}
+        onClick={() => toggleStep(step.id)}
+      >
+        <div className="p-6">
+          <div className="flex items-start justify-between mb-4">
+            <div className="flex items-start gap-3">
+              {step.stepNumber && (
+                <div className={`${colorClasses.bg} border-2 ${colorClasses.border} 
+                               rounded-full w-10 h-10 flex items-center justify-center`}>
+                  <span className={colorClasses.text}>{step.stepNumber}</span>
+                </div>
+              )}
+              <div>
+                <h3 className={colorClasses.text}>{step.stage}</h3>
+                {step.includeRelation && (
+                  <span className="inline-flex items-center gap-1 text-xs mt-1 
+                                 bg-white px-2 py-1 rounded border">
+                    <Link2 size={12} />
+                    {step.includeRelation}
+                  </span>
+                )}
+              </div>
+            </div>
+            <Icon className={colorClasses.icon} size={24} />
+          </div>
+
+          {isExpanded && (
+            <div className="mt-4 space-y-4 border-t pt-4">
+              {step.preCondition && (
+                <div className="flex items-start gap-2">
+                  <Shield className="text-amber-600 flex-shrink-0" size={18} />
+                  <div>
+                    <p className="text-amber-900">Pré-condição:</p>
+                    <p className="text-gray-700 text-sm">{step.preCondition}</p>
+                  </div>
+                </div>
+              )}
+
+              <div className="flex items-start gap-2">
+                <User className={colorClasses.icon} size={18} />
+                <div>
+                  <p className={colorClasses.text}>Ações do Usuário:</p>
+                  <p className="text-gray-700 text-sm">{step.userActions}</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-2">
+                <Database className={colorClasses.icon} size={18} />
+                <div>
+                  <p className={colorClasses.text}>Ações do Sistema:</p>
+                  <ul className="text-gray-700 text-sm list-disc list-inside space-y-1">
+                    {step.systemActions.map((action, idx) => (
+                      <li key={idx}>{action}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-2">
+                <AlertCircle className="text-amber-600" size={18} />
+                <div>
+                  <p className="text-amber-900">Pontos de Atenção:</p>
+                  <p className="text-gray-700 text-sm">{step.attentionPoints}</p>
+                </div>
+              </div>
+
+              {step.postCondition && (
+                <div className="flex items-start gap-2">
+                  <CheckCircle className="text-emerald-600 flex-shrink-0" size={18} />
+                  <div>
+                    <p className="text-emerald-900">Pós-condição:</p>
+                    <p className="text-gray-700 text-sm">{step.postCondition}</p>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <div className="space-y-8">
+      {/* Filtros */}
+      <div className="flex flex-wrap gap-4 justify-center">
+        <button
+          onClick={() => setSelectedFlow('all')}
+          className={`px-6 py-2 rounded-lg transition-all ${
+            selectedFlow === 'all'
+              ? 'bg-blue-600 text-white'
+              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+          }`}
+        >
+          Todos os Fluxos
+        </button>
+        <button
+          onClick={() => setSelectedFlow('aluno')}
+          className={`px-6 py-2 rounded-lg transition-all ${
+            selectedFlow === 'aluno'
+              ? 'bg-purple-600 text-white'
+              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+          }`}
+        >
+          Cadastro de Aluno
+        </button>
+        <button
+          onClick={() => setSelectedFlow('professor')}
+          className={`px-6 py-2 rounded-lg transition-all ${
+            selectedFlow === 'professor'
+              ? 'bg-indigo-600 text-white'
+              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+          }`}
+        >
+          Cadastro de Professor
+        </button>
+        <button
+          onClick={() => setSelectedFlow('fornecedor')}
+          className={`px-6 py-2 rounded-lg transition-all ${
+            selectedFlow === 'fornecedor'
+              ? 'bg-teal-600 text-white'
+              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+          }`}
+        >
+          Cadastro de Fornecedor
+        </button>
+        <button
+          onClick={() => setSelectedFlow('juridica')}
+          className={`px-6 py-2 rounded-lg transition-all ${
+            selectedFlow === 'juridica'
+              ? 'bg-orange-600 text-white'
+              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+          }`}
+        >
+          Pessoa Jurídica
+        </button>
+      </div>
+
+      {/* Etapa Comum (Início) */}
+      <div className="space-y-4">
+        {commonSteps.map((step) => renderStep(step))}
+      </div>
+
+      {/* Bifurcação */}
+      <div className="bg-gradient-to-r from-purple-100 via-indigo-100 via-teal-100 
+                      via-gray-100 to-orange-100 border-2 border-gray-300 rounded-lg p-6 text-center">
+        <GitBranch className="mx-auto mb-3 text-gray-600" size={32} />
+        <h3 className="text-gray-900 mb-2">Bifurcação do Fluxo</h3>
+        <p className="text-gray-600">
+          O sistema oferece quatro opções de cadastro
+        </p>
+        <div className="grid md:grid-cols-4 gap-4 mt-4">
+          <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
+            <User className="mx-auto mb-2 text-purple-600" size={20} />
+            <p className="text-purple-900">Cadastro de Aluno</p>
+            <p className="text-xs text-purple-700 mt-1">
+              Inclui automaticamente Pessoa Física
+            </p>
+          </div>
+          <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-3">
+            <BookOpen className="mx-auto mb-2 text-indigo-600" size={20} />
+            <p className="text-indigo-900">Cadastro de Professor</p>
+            <p className="text-xs text-indigo-700 mt-1">
+              Inclui automaticamente Pessoa Física
+            </p>
+          </div>
+          <div className="bg-teal-50 border border-teal-200 rounded-lg p-3">
+            <Package className="mx-auto mb-2 text-teal-600" size={20} />
+            <p className="text-teal-900">Cadastro de Fornecedor</p>
+            <p className="text-xs text-teal-700 mt-1">
+              Inclui automaticamente Pessoa Jurídica
+            </p>
+          </div>
+          <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
+            <Building2 className="mx-auto mb-2 text-orange-600" size={20} />
+            <p className="text-orange-900">Pessoa Jurídica</p>
+            <p className="text-xs text-orange-700 mt-1">Cadastro de empresa</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Fluxos Paralelos */}
+      <div className={`grid gap-8 ${selectedFlow === 'all' ? 'md:grid-cols-4' : 'grid-cols-1'} mt-8`}>
+        
+        {/* Fluxo Cadastro de Aluno */}
+        {(selectedFlow === 'all' || selectedFlow === 'aluno') && (
+          <div className="space-y-4">
+            <div className="bg-purple-600 text-white p-4 rounded-lg text-center">
+              <GraduationCap className="mx-auto mb-2" size={24} />
+              <h3 className="text-white">Cadastro de Aluno</h3>
+              <p className="text-purple-100 text-sm mt-1">
+                Inclui automaticamente: Pessoa Física
+              </p>
+            </div>
+            {alunoSteps.map((step, index) => (
+              <div key={step.id}>
+                {renderStep(step)}
+                {index < alunoSteps.length - 1 && (
+                  <div className="flex justify-center py-2">
+                    <ChevronDown className="text-purple-400" size={32} />
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Fluxo Cadastro de Professor */}
+        {(selectedFlow === 'all' || selectedFlow === 'professor') && (
+          <div className="space-y-4">
+            <div className="bg-indigo-600 text-white p-4 rounded-lg text-center">
+              <BookOpen className="mx-auto mb-2" size={24} />
+              <h3 className="text-white">Cadastro de Professor</h3>
+              <p className="text-indigo-100 text-sm mt-1">
+                Inclui automaticamente: Pessoa Física
+              </p>
+            </div>
+            {professorSteps.map((step, index) => (
+              <div key={step.id}>
+                {renderStep(step)}
+                {index < professorSteps.length - 1 && (
+                  <div className="flex justify-center py-2">
+                    <ChevronDown className="text-indigo-400" size={32} />
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Fluxo Cadastro de Fornecedor */}
+        {(selectedFlow === 'all' || selectedFlow === 'fornecedor') && (
+          <div className="space-y-4">
+            <div className="bg-teal-600 text-white p-4 rounded-lg text-center">
+              <Package className="mx-auto mb-2" size={24} />
+              <h3 className="text-white">Cadastro de Fornecedor</h3>
+              <p className="text-teal-100 text-sm mt-1">
+                Inclui automaticamente: Pessoa Jurídica
+              </p>
+            </div>
+            {fornecedorSteps.map((step, index) => (
+              <div key={step.id}>
+                {renderStep(step)}
+                {index < fornecedorSteps.length - 1 && (
+                  <div className="flex justify-center py-2">
+                    <ChevronDown className="text-teal-400" size={32} />
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Fluxo Pessoa Jurídica */}
+        {(selectedFlow === 'all' || selectedFlow === 'juridica') && (
+          <div className="space-y-4">
+            <div className="bg-orange-600 text-white p-4 rounded-lg text-center">
+              <Building2 className="mx-auto mb-2" size={24} />
+              <h3 className="text-white">Pessoa Jurídica</h3>
+              <p className="text-orange-100 text-sm mt-1">Cadastro de empresa</p>
+            </div>
+            {pessoaJuridicaSteps.map((step, index) => (
+              <div key={step.id}>
+                {renderStep(step)}
+                {index < pessoaJuridicaSteps.length - 1 && (
+                  <div className="flex justify-center py-2">
+                    <ChevronDown className="text-orange-400" size={32} />
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* Cenários Alternativos */}
+      <div className="bg-red-50 border-2 border-red-300 rounded-lg p-6 mt-8">
+        <div className="flex items-center gap-2 mb-4">
+          <XCircle className="text-red-600" size={28} />
+          <h3 className="text-red-900 mb-3">Cenários Alternativos (Falhas)</h3>
+        </div>
+        
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          
+          {/* Cadastro de Aluno */}
+          <div>
+            <p className="text-red-800 mb-3">Cadastro de Aluno:</p>
+            <ul className="space-y-2 text-red-800">
+              <li className="flex items-start gap-2">
+                <span className="text-red-400 mt-1">•</span>
+                <div>
+                  <span className="text-red-900">Alternativo 1 - Matrícula duplicada:</span>
+                  <p className="text-sm">Sistema bloqueia operação.</p>
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-red-400 mt-1">•</span>
+                <div>
+                  <span className="text-red-900">Alternativo 2 - Curso inexistente/inativo:</span>
+                  <p className="text-sm">Sistema rejeita até atualização.</p>
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-red-400 mt-1">•</span>
+                <div>
+                  <span className="text-red-900">CPF inválido:</span>
+                  <p className="text-sm">Sistema solicita correção.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          {/* Cadastro de Professor */}
+          <div>
+            <p className="text-red-800 mb-3">Cadastro de Professor:</p>
+            <ul className="space-y-2 text-red-800">
+              <li className="flex items-start gap-2">
+                <span className="text-red-400 mt-1">•</span>
+                <div>
+                  <span className="text-red-900">Alternativo 1 - Professor já cadastrado:</span>
+                  <p className="text-sm">Sistema oferece atualização de dados.</p>
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-red-400 mt-1">•</span>
+                <div>
+                  <span className="text-red-900">Alternativo 2 - Formação inválida:</span>
+                  <p className="text-sm">Sistema bloqueia até validação.</p>
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-red-400 mt-1">•</span>
+                <div>
+                  <span className="text-red-900">CPF inválido:</span>
+                  <p className="text-sm">Sistema solicita correção.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          {/* Cadastro de Fornecedor */}
+          <div>
+            <p className="text-red-800 mb-3">Cadastro de Fornecedor:</p>
+            <ul className="space-y-2 text-red-800">
+              <li className="flex items-start gap-2">
+                <span className="text-red-400 mt-1">•</span>
+                <div>
+                  <span className="text-red-900">Alternativo 1 - Fornecedor já existente:</span>
+                  <p className="text-sm">Sistema sugere atualização de dados.</p>
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-red-400 mt-1">•</span>
+                <div>
+                  <span className="text-red-900">Alternativo 2 - CNPJ inválido:</span>
+                  <p className="text-sm">Sistema bloqueia o cadastro.</p>
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-red-400 mt-1">•</span>
+                <div>
+                  <span className="text-red-900">Área de fornecimento não especificada:</span>
+                  <p className="text-sm">Sistema exige preenchimento.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          {/* Pessoa Jurídica */}
+          <div>
+            <p className="text-red-800 mb-3">Pessoa Jurídica:</p>
+            <ul className="space-y-2 text-red-800">
+              <li className="flex items-start gap-2">
+                <span className="text-red-400 mt-1">•</span>
+                <div>
+                  <span className="text-red-900">Alternativo 1 - CNPJ inválido:</span>
+                  <p className="text-sm">Sistema rejeita cadastro.</p>
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-red-400 mt-1">•</span>
+                <div>
+                  <span className="text-red-900">Alternativo 2 - CNPJ já cadastrado:</span>
+                  <p className="text-sm">Sistema informa duplicidade.</p>
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-red-400 mt-1">•</span>
+                <div>
+                  <span className="text-red-900">Formato incorreto:</span>
+                  <p className="text-sm">Sistema exibe erro de validação.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
