@@ -92,19 +92,6 @@ SOURCE queries.sql;
 
 ---
 
-### 🔍 Exemplo de Consulta Integrada
-```sql
-SELECT a.matricula, pAluno.nome AS aluno, pProf.nome AS professor
-FROM Orientacao o
-JOIN Aluno a ON o.idAluno = a.idPessoa
-JOIN Pessoa pAluno ON pAluno.idPessoa = a.idPessoa
-JOIN Professor pr ON pr.idPessoa = o.idProfessor
-JOIN Pessoa pProf ON pProf.idPessoa = pr.idPessoa;
-```
-> Essa consulta exibe o nome dos alunos e seus orientadores cadastrados no sistema.
-
----
-
 ## 🚀 Instruções de Uso
 
 1. Clone este repositório:
