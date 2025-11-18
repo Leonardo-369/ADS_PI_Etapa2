@@ -1,11 +1,11 @@
 # 🏫 Sistema de Gestão Universitária
 **Projeto Integrador – Desenvolvimento de Sistemas Orientado a Objetos**  
-Curso: Tecnologia em Análise e Desenvolvimento de Sistemas – SENAC (EAD, 2025)
+Curso: Tecnologia em Análise e Desenvolvimento de Sistemas – SENAC (EAD, 2025).
 
 ---
 
 ## 👥 Integrantes
-- Caio Romano Galeffi  
+- Caio Romano Galeffi
 - Gabriela Rodrigues Guimarães  
 - Larissa Soares Conceição  
 - Leonardo Freire de Albuquerque Mello  
